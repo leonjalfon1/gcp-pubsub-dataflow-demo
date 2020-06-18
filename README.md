@@ -105,7 +105,7 @@ In this step we will setup the local environment to work with Dataflow
 - Move to the Dataflow project directory
 
 ```
-cd $REPOSITORY_ROOT_PATH/dataflow-template
+cd $REPOSITORY_ROOT_PATH/data-pipelines
 ```
 
 - Create a environment variable that point to the region you want to use for Dataflow
@@ -222,7 +222,7 @@ https://console.cloud.google.com/storage/browser
 - Generate load (from another terminal session)
 
 ```
-for n in {1..100}; do curl http://localhost:3000/publish; done
+for n in {1..250}; do curl http://localhost:3000/publish; done
 ```
 
 - Ctrl+C to stop the program in your terminal. Note that this does not actually stop the job if you use DataflowRunner
