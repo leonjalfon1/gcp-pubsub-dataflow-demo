@@ -153,10 +153,10 @@ pip install apache-beam[gcp]
 
 ### 5) Run the Data Pipeline Locally
 
-- Run the wordcount module from the apache_beam package on your local machine with the following command:
+- Run the wordcount.py pipeline on your local machine with the following command:
 
 ```
-python -m apache_beam.examples.wordcount --output outputs
+python wordcount.py --output outputs
 ```
 
 - To view the outputs, run the following command:
@@ -168,18 +168,18 @@ more outputs*
 - Executing your pipeline locally allows you to test and debug your Apache Beam program
 
 
-### 6) Run the Data Pipeline using Dataflow
+### 6) Run a Batch Data Pipeline using Dataflow
 
-- You can run the wordcount module from the apache_beam package on the Dataflow service by specifying DataflowRunner in the runner field and selecting a region where the pipeline will execute:
+- You can run the wordcount pipeline on the Dataflow service by specifying DataflowRunner in the runner field and selecting a region where the pipeline will execute:
 
 ```
-python -m apache_beam.examples.wordcount \
+python wordcount.py \
   --region $DATAFLOW_REGION \
   --input gs://dataflow-samples/shakespeare/kinglear.txt \
-  --output gs://$BUCKET_NAME/results/outputs \
+  --output gs://$BUCKET_NAME/wordcount/results/outputs \
   --runner DataflowRunner \
   --project $GOOGLE_PROJECT_NAME \
-  --temp_location gs://$BUCKET_NAME/tmp/
+  --temp_location gs://$BUCKET_NAME/wordcount/tmp
 ```
 
 - To track and inspect the data pipeline browse to Dataflow:
@@ -194,10 +194,62 @@ https://console.cloud.google.com/dataflow
 https://console.cloud.google.com/storage/browser
 ```
 
+### 7) Configure a Pub/Sub Streaming Data pipeline with Dataflow
+
+- To configure the streaming data pipeline run:
+
+python pubsub-streaming.py \
+  --project=$GOOGLE_PROJECT_NAME \
+  --region $DATAFLOW_REGION \
+  --input_topic=projects/$GOOGLE_PROJECT_NAME/topics/demo-topic \
+  --output_path=gs://$BUCKET_NAME/pubsub/results/output \
+  --runner=DataflowRunner \
+  --window_size=2 \
+  --temp_location=gs://$BUCKET_NAME/pubsub/tmp
+
+- After the job has been submitted, you can check its status in the GCP Console Dataflow page:
+
+```
+https://console.cloud.google.com/dataflow
+```
+
+- You can also check the output in your Cloud Storage Bucket:
+
+```
+https://console.cloud.google.com/storage/browser
+```
+
+- Generate load (from another terminal session)
+
+```
+for n in {1..100}; do curl http://localhost:3000/publish; done
+```
+
+- Ctrl+C to stop the program in your terminal. Note that this does not actually stop the job if you use DataflowRunner
+
 
 ## Cleanup
 ---
 
+- Stop the Dataflow job in GCP Console Dataflow page. Cancel the job instead of draining it. This may take some minutes
+
+```
+export DATAFLOW_JOB_ID="check-the-job-id-in-dataflow-console"
+```
+```
+docker run --rm -it -v $REPOSITORY_ROOT_PATH/gcp-credentials/service-account.json:/key/service-account.json google/cloud-sdk:latest bash -c "gcloud auth activate-service-account $(echo $GOOGLE_SERVICE_ACCOUNT_EMAIL) --key-file=/key/service-account.json; gcloud config set project $(echo $GOOGLE_PROJECT_NAME); gcloud dataflow jobs cancel $DATAFLOW_JOB_ID --region=$DATAFLOW_REGION
+```
+
 - Delete the Pub/Sub topic
 
+```
+gcloud pubsub topics delete cron-topic
+
+docker run --rm -it -v $REPOSITORY_ROOT_PATH/gcp-credentials/service-account.json:/key/service-account.json google/cloud-sdk:latest bash -c "gcloud auth activate-service-account $(echo $GOOGLE_SERVICE_ACCOUNT_EMAIL) --key-file=/key/service-account.json; gcloud config set project $(echo $GOOGLE_PROJECT_NAME); gcloud pubsub topics delete demo-topic
+```
+
 - Delete the Cloud Storage Bucket
+
+```
+docker run --rm -it -v $REPOSITORY_ROOT_PATH/gcp-credentials/service-account.json:/key/service-account.json google/cloud-sdk:latest bash -c "gcloud auth activate-service-account $(echo $GOOGLE_SERVICE_ACCOUNT_EMAIL) --key-file=/key/service-account.json; gcloud config set project $(echo $GOOGLE_PROJECT_NAME); gsutil rb gs://$BUCKET_NAME
+```
