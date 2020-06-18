@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-pubsub-publisher-app",
+  "version": "1.0.0",
+  "description": "Demo app that publish messages to a pub/sub topic",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo test success"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonjalfon1/gcp-pubsub-dataflow-demo.git"
+  },
+  "author": "Leon Jalfon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leonjalfon1/gcp-pubsub-dataflow-demo/issues"
+  },
+  "homepage": "https://github.com/leonjalfon1/gcp-pubsub-dataflow-demo#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
