@@ -237,7 +237,7 @@ for n in {1..250}; do curl http://localhost:3000/publish; done
 export DATAFLOW_JOB_ID="check-the-job-id-in-dataflow-console"
 ```
 ```
-docker run --rm -it -v $REPOSITORY_ROOT_PATH/gcp-credentials/service-account.json:/key/service-account.json google/cloud-sdk:latest bash -c "gcloud auth activate-service-account $(echo $GOOGLE_SERVICE_ACCOUNT_EMAIL) --key-file=/key/service-account.json; gcloud config set project $(echo $GOOGLE_PROJECT_NAME); gcloud dataflow jobs cancel $DATAFLOW_JOB_ID --region=$DATAFLOW_REGION
+docker run --rm -it -v $REPOSITORY_ROOT_PATH/gcp-credentials/service-account.json:/key/service-account.json google/cloud-sdk:latest bash -c "gcloud auth activate-service-account $(echo $GOOGLE_SERVICE_ACCOUNT_EMAIL) --key-file=/key/service-account.json; gcloud config set project $(echo $GOOGLE_PROJECT_NAME); gcloud dataflow jobs cancel $DATAFLOW_JOB_ID --region=$DATAFLOW_REGION"
 ```
 
 - Delete the Pub/Sub topic
@@ -245,11 +245,11 @@ docker run --rm -it -v $REPOSITORY_ROOT_PATH/gcp-credentials/service-account.jso
 ```
 gcloud pubsub topics delete cron-topic
 
-docker run --rm -it -v $REPOSITORY_ROOT_PATH/gcp-credentials/service-account.json:/key/service-account.json google/cloud-sdk:latest bash -c "gcloud auth activate-service-account $(echo $GOOGLE_SERVICE_ACCOUNT_EMAIL) --key-file=/key/service-account.json; gcloud config set project $(echo $GOOGLE_PROJECT_NAME); gcloud pubsub topics delete demo-topic
+docker run --rm -it -v $REPOSITORY_ROOT_PATH/gcp-credentials/service-account.json:/key/service-account.json google/cloud-sdk:latest bash -c "gcloud auth activate-service-account $(echo $GOOGLE_SERVICE_ACCOUNT_EMAIL) --key-file=/key/service-account.json; gcloud config set project $(echo $GOOGLE_PROJECT_NAME); gcloud pubsub topics delete demo-topic"
 ```
 
 - Delete the Cloud Storage Bucket
 
 ```
-docker run --rm -it -v $REPOSITORY_ROOT_PATH/gcp-credentials/service-account.json:/key/service-account.json google/cloud-sdk:latest bash -c "gcloud auth activate-service-account $(echo $GOOGLE_SERVICE_ACCOUNT_EMAIL) --key-file=/key/service-account.json; gcloud config set project $(echo $GOOGLE_PROJECT_NAME); gsutil rb gs://$BUCKET_NAME
+docker run --rm -it -v $REPOSITORY_ROOT_PATH/gcp-credentials/service-account.json:/key/service-account.json google/cloud-sdk:latest bash -c "gcloud auth activate-service-account $(echo $GOOGLE_SERVICE_ACCOUNT_EMAIL) --key-file=/key/service-account.json; gcloud config set project $(echo $GOOGLE_PROJECT_NAME); gsutil rb gs://$BUCKET_NAME"
 ```
