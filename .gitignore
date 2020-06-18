@@ -1,1 +1,6 @@
+# Mac
 .DS_Store
+
+### Avoid storing gcp credentials ###
+gcp-credentials/*
+!gcp-credentials/.gitempty

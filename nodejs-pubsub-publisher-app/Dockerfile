@@ -15,5 +15,10 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+# Configure GCP Authentication
+ENV GOOGLE_APPLICATION_CREDENTIALS="/key/service-account.json"
+ENV GOOGLE_PROJECT_ID="your-project-name"
+ENV GOOGLE_TOPIC_NAME="demo-topic"
+
 EXPOSE 3000
 CMD [ "node", "app.js" ]
