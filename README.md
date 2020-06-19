@@ -153,6 +153,12 @@ pip install apache-beam[gcp]
 
 ### 5) Run the Batch Data Pipeline Locally
 
+- In this section we will run the wordcount batch data pipeline (locally) that performs the following steps:
+
+  1. Takes a text file as input.
+  2. Parses each line into words.
+  3. Performs a frequency count on the tokenized words.
+
 - Run the wordcount.py pipeline on your local machine with the following command:
 
 ```
