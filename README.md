@@ -156,7 +156,7 @@ pip install apache-beam[gcp]
 - Run the wordcount.py pipeline on your local machine with the following command:
 
 ```
-python wordcount.py --output outputs
+python wordcount-batch.py --output outputs
 ```
 
 - To view the outputs, run the following command:
@@ -173,7 +173,7 @@ more outputs*
 - You can run the wordcount pipeline on the Dataflow service by specifying DataflowRunner in the runner field and selecting a region where the pipeline will execute:
 
 ```
-python wordcount.py \
+python wordcount-batch.py \
   --region $DATAFLOW_REGION \
   --input gs://dataflow-samples/shakespeare/kinglear.txt \
   --output gs://$BUCKET_NAME/wordcount/results/outputs \
