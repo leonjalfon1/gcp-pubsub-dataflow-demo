@@ -1,6 +1,6 @@
 # Pub/Sub & Dataflow Demo
 
-In this demo we will ...
+In this demo we will see how to create a data pipeline using Pub/Sub and Dataflow
 
 ## Required Steps
 ---
@@ -8,7 +8,7 @@ In this demo we will ...
 1. Configure your Environment
 2. Create the Pub/Sub Topic and Subscription
 3. Deploy the Publisher Application
-4. Setup the Environment for Dataflow
+4. Setup the Environment to work with Apache Beam and Dataflow
 5. Run the Data Pipeline Locally
 6. Run the Data Pipeline using Dataflow
 
@@ -98,7 +98,7 @@ docker run -d -p 3000:3000 -e GOOGLE_PROJECT_NAME=$GOOGLE_PROJECT_NAME -e GOOGLE
 http://localhost:3000/publish
 ```
 
-### 4) Setup the Environment for Dataflow
+### 4) Setup the Environment to work with Apache Beam and Dataflow
 
 In this step we will setup the local environment to work with Dataflow
 
@@ -151,7 +151,7 @@ source env/bin/activate
 pip install apache-beam[gcp]
 ```
 
-### 5) Run the Data Pipeline Locally
+### 5) Run the Batch Data Pipeline Locally
 
 - Run the wordcount.py pipeline on your local machine with the following command:
 
