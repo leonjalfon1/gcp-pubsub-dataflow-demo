@@ -204,6 +204,7 @@ https://console.cloud.google.com/storage/browser
 
 - To configure the streaming data pipeline run:
 
+```
 python pubsub-streaming.py \
   --project=$GOOGLE_PROJECT_NAME \
   --region $DATAFLOW_REGION \
@@ -212,6 +213,7 @@ python pubsub-streaming.py \
   --runner=DataflowRunner \
   --window_size=2 \
   --temp_location=gs://$BUCKET_NAME/pubsub/tmp
+```
 
 - After the job has been submitted, you can check its status in the GCP Console Dataflow page:
 
