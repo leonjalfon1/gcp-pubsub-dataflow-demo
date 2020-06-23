@@ -3,7 +3,7 @@
 In this demo we will see how to create a data pipeline using Pub/Sub and Dataflow
 
 <kbd>
-  <img src="/pubsub-dataflow.png" width="500">
+  <img src="/pubsub-dataflow.png" width="700">
 </kbd>
 
 ## Required Steps
