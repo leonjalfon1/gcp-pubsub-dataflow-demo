@@ -7,7 +7,6 @@ In this demo we will see how to create a data pipeline using Pub/Sub and Dataflo
 </kbd>
 
 ## Required Steps
----
 
 1. Configure your Environment
 2. Create the Pub/Sub Topic and Subscription
@@ -17,7 +16,6 @@ In this demo we will see how to create a data pipeline using Pub/Sub and Dataflo
 6. Run the Data Pipeline using Dataflow
 
 ## Prerequisites
----
 
 - Docker
 - Google Cloud Project (and enough permissions)
@@ -25,7 +23,6 @@ In this demo we will see how to create a data pipeline using Pub/Sub and Dataflo
 - Enable the Dataflow API (https://console.developers.google.com/apis/api/dataflow.googleapis.com/overview)
 
 ## Instructions
----
 
 ### 1) Configure your Environment
 
@@ -241,7 +238,6 @@ for n in {1..250}; do curl http://localhost:3000/publish; done
 
 
 ## Cleanup
----
 
 - Stop the Dataflow job in GCP Console Dataflow page. Cancel the job instead of draining it. This may take some minutes
 
