@@ -18,7 +18,7 @@
   "homepage": "https://github.com/leonjalfon1/gcp-pubsub-dataflow-demo#readme",
   "dependencies": {
     "@google-cloud/pubsub": "^2.1.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "log-timestamp": "^0.3.0"
   }
 }
